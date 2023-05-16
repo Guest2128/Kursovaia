@@ -32,6 +32,8 @@
             this.labelKol = new System.Windows.Forms.Label();
             this.textBoxKol = new System.Windows.Forms.TextBox();
             this.buttonGKol = new System.Windows.Forms.Button();
+            this.buttonShow = new System.Windows.Forms.Button();
+            this.buttonClear = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelDS
@@ -93,7 +95,7 @@
             // labelKol
             // 
             this.labelKol.AutoSize = true;
-            this.labelKol.Location = new System.Drawing.Point(25, 117);
+            this.labelKol.Location = new System.Drawing.Point(22, 110);
             this.labelKol.Name = "labelKol";
             this.labelKol.Size = new System.Drawing.Size(107, 13);
             this.labelKol.TabIndex = 6;
@@ -101,14 +103,14 @@
             // 
             // textBoxKol
             // 
-            this.textBoxKol.Location = new System.Drawing.Point(155, 110);
+            this.textBoxKol.Location = new System.Drawing.Point(155, 107);
             this.textBoxKol.Name = "textBoxKol";
             this.textBoxKol.Size = new System.Drawing.Size(82, 20);
             this.textBoxKol.TabIndex = 7;
             // 
             // buttonGKol
             // 
-            this.buttonGKol.Location = new System.Drawing.Point(83, 159);
+            this.buttonGKol.Location = new System.Drawing.Point(83, 142);
             this.buttonGKol.Name = "buttonGKol";
             this.buttonGKol.Size = new System.Drawing.Size(93, 23);
             this.buttonGKol.TabIndex = 8;
@@ -116,11 +118,34 @@
             this.buttonGKol.UseVisualStyleBackColor = true;
             this.buttonGKol.Click += new System.EventHandler(this.buttonGKol_Click);
             // 
+            // buttonShow
+            // 
+            this.buttonShow.Location = new System.Drawing.Point(83, 212);
+            this.buttonShow.Name = "buttonShow";
+            this.buttonShow.Size = new System.Drawing.Size(93, 34);
+            this.buttonShow.TabIndex = 9;
+            this.buttonShow.Text = "Отобразить";
+            this.buttonShow.UseVisualStyleBackColor = true;
+            this.buttonShow.Click += new System.EventHandler(this.buttonShow_Click);
+            // 
+            // buttonClear
+            // 
+            this.buttonClear.Location = new System.Drawing.Point(83, 171);
+            this.buttonClear.Name = "buttonClear";
+            this.buttonClear.Size = new System.Drawing.Size(93, 35);
+            this.buttonClear.TabIndex = 10;
+            this.buttonClear.Text = "Очистить таблицу";
+            this.buttonClear.UseVisualStyleBackColor = true;
+            this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
+            // 
             // Window
             // 
+            this.AcceptButton = this.buttonGKol;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(256, 450);
+            this.ClientSize = new System.Drawing.Size(266, 258);
+            this.Controls.Add(this.buttonClear);
+            this.Controls.Add(this.buttonShow);
             this.Controls.Add(this.buttonGKol);
             this.Controls.Add(this.textBoxKol);
             this.Controls.Add(this.labelKol);
@@ -131,7 +156,7 @@
             this.Controls.Add(this.labelDF);
             this.Controls.Add(this.labelDS);
             this.Name = "Window";
-            this.Text = "Window";
+            this.Text = "Окно генерации";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -148,5 +173,7 @@
         private System.Windows.Forms.Label labelKol;
         private System.Windows.Forms.TextBox textBoxKol;
         private System.Windows.Forms.Button buttonGKol;
+        private System.Windows.Forms.Button buttonShow;
+        private System.Windows.Forms.Button buttonClear;
     }
 }
