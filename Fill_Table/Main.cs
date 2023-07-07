@@ -16,7 +16,6 @@ namespace Fill_Table {
         }
 
         private void выходToolStripMenuItem_Click(object sender, EventArgs e) {
-            //Environment.Exit(0);
             Close();
         }
 

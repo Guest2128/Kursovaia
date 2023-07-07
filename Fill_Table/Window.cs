@@ -31,6 +31,10 @@ namespace Fill_Table {
                 return dateTime;
             }
 
+            DateTime dataGen2(DateTime dateTime) {
+                return dateTime.AddHours(Generate(0, 23 - dateTime.Hour));
+            }
+
             int checkKol() {
                 var value = 0;
                 try {
@@ -51,12 +55,13 @@ namespace Fill_Table {
                 using (SqlConnection connection = new SqlConnection(connectionString)) {
                     connection.Open();
                     SqlCommand sChipGen = new SqlCommand(
-                        "Declare Курсор_Студент Cursor For Select id From Студент Open Курсор_Студент Declare @id int " +
-                        "Fetch Курсор_Студент Into @id While @@FETCH_STATUS = 0 Begin Update Студент " +
-                        "Set чип = CAST(RAND() * 999999999 AS INT) Where id = @id " +
+                        "Declare Курсор_Студент Cursor For Select id From Студент Open Курсор_Студент Declare @id int, @чип bigint " +
+                        "Fetch Курсор_Студент Into @id While @@FETCH_STATUS = 0 Begin Set @чип = CAST(RAND() * 999999999 AS INT) " +
+                        "Update[Отметка турникета] Set чип = @чип Where чип = (Select чип From Студент Where id = @id) " +
+                        "Update Студент Set чип = @чип Where id = @id " +
                         "Fetch Курсор_Студент Into @id End Close Курсор_Студент Deallocate Курсор_Студент", connection);
                     sChipGen.ExecuteNonQuery();
-                    for (var i = 0;i < kol;++i) {
+                    for (var i = 0; i < kol; ++i) {
                         int genID;
                         while (true) {
                             int sq;
@@ -89,8 +94,13 @@ namespace Fill_Table {
                         using (var squery = new SqlCommand("Select чип " + $"From Студент Where id = {genS}", connection)) {
                             chip = int.Parse(squery.ExecuteScalar().ToString());
                         }
+                        var dateTime = dataGen();
                         SqlCommand sFilling = 
-                            new SqlCommand($"Insert [Отметка турникета] Values ({genID}, {chip}, {Generate(0, 2)}, '{dataGen()}')", connection);
+                            new SqlCommand($"Insert [Отметка турникета] Values ({genID}, {chip}, {1}, '{dateTime}')", connection);
+                        sFilling.ExecuteNonQuery();
+                        dateTime = dataGen2(dateTime);
+                        sFilling =
+                            new SqlCommand($"Insert [Отметка турникета] Values ({genID}, {chip}, {0}, '{dateTime}')", connection);
                         sFilling.ExecuteNonQuery();
                     }
                     MessageBox.Show("Выполнено успешно.", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
