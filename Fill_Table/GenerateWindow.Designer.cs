@@ -1,5 +1,5 @@
 ﻿namespace Fill_Table {
-    partial class Window {
+    partial class GenerateWindow {
         /// <summary>
         /// Обязательная переменная конструктора.
         /// </summary>
@@ -138,7 +138,7 @@
             this.buttonClear.UseVisualStyleBackColor = true;
             this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
             // 
-            // Window
+            // generateWindow
             // 
             this.AcceptButton = this.buttonGKol;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -155,7 +155,7 @@
             this.Controls.Add(this.dateTimePickerS);
             this.Controls.Add(this.labelDF);
             this.Controls.Add(this.labelDS);
-            this.Name = "Window";
+            this.Name = "generateWindow";
             this.Text = "Окно генерации";
             this.ResumeLayout(false);
             this.PerformLayout();

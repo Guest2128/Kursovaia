@@ -145,7 +145,7 @@
             this.Controls.Add(this.dataGridViewT);
             this.Name = "Info";
             this.Opacity = 0.9D;
-            this.Text = "Информация о генерации";
+            this.Text = "Окно нформации о генерации";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewT)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

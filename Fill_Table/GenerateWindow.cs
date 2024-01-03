@@ -4,9 +4,11 @@ using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace Fill_Table {
-    public partial class Window : Form {
-        public Window() {
+    public partial class GenerateWindow : Form {
+        static string connectionString;
+        public GenerateWindow(string connection) {
             InitializeComponent();
+            connectionString = connection;
         }
 
         private void buttonGKol_Click(object sender, EventArgs e) {
@@ -51,7 +53,6 @@ namespace Fill_Table {
 
             var kol = checkKol();
             if (kol != 0) {
-                var connectionString = "Server=localhost;Database=Турникет;Trusted_Connection=True;";
                 using (SqlConnection connection = new SqlConnection(connectionString)) {
                     connection.Open();
                     SqlCommand sChipGen = new SqlCommand(
@@ -108,10 +109,9 @@ namespace Fill_Table {
             }
         }
 
-        Info info = new Info();
+        Info info = new Info(connectionString);
 
         private void buttonShow_Click(object sender, EventArgs e) {
-            var connectionString = "Server=localhost;Database=Турникет;Trusted_Connection=True;";
             using (SqlConnection connection = new SqlConnection(connectionString)) {
                 connection.Open();
                 var adapter = new SqlDataAdapter("Select [Номер турникета] as Турникет, Студент.id, фамилия, имя, отчество, вход, [дата и время] " +
@@ -120,7 +120,7 @@ namespace Fill_Table {
                 try {     
                     adapter.Fill(table);
                     if (info == null || info.IsDisposed) {
-                        info = new Info();
+                        info = new Info(connectionString);
                     }
                     info.Show();
                     info.BringToFront();
@@ -133,7 +133,6 @@ namespace Fill_Table {
         }
 
         private void buttonClear_Click(object sender, EventArgs e) {
-            var connectionString = "Server=localhost;Database=Турникет;Trusted_Connection=True;";
             using (SqlConnection connection = new SqlConnection(connectionString)) {
                 connection.Open();
                 SqlCommand sChipGen = new SqlCommand("Delete [Отметка турникета]", connection);

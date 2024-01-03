@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using OfficeOpenXml;
+using System;
 using System.Windows.Forms;
 
 namespace Fill_Table {
@@ -13,6 +11,7 @@ namespace Fill_Table {
         static void Main() {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             Application.Run(new Main());
         }
     }

@@ -5,8 +5,10 @@ using System.Windows.Forms;
 
 namespace Fill_Table {
     public partial class Info : Form {
-        public Info() {
+        string connectionString;
+        public Info(string connection) {
             InitializeComponent();
+            connectionString = connection;
             if (comboBoxT.SelectedItem.ToString() == "все")
                 textBoxT.Visible = false;
             if (comboBoxS.SelectedItem.ToString() == "все")
@@ -40,7 +42,6 @@ namespace Fill_Table {
                         throw new Exception("Вы ничего не ввели в поле студента.");
                     else
                         throw new Exception("Должно быть введено число в поле студента.");
-                var connectionString = "Server=localhost;Database=Турникет;Trusted_Connection=True;";
                 var sql = "Select [Номер турникета] as Турникет, Студент.id, фамилия, имя, отчество, вход, [дата и время] " +
                     "From [Отметка турникета], Турникет, Студент Where [id Турникет] = Турникет.id and [Отметка турникета].чип = Студент.чип";
                 var sqlS = " and Студент.id = ";
