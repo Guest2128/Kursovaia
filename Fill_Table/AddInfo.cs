@@ -19,7 +19,7 @@ namespace Fill_Table {
                 label.Text = "Специальности";
                 Text += " Группу";
                 query = "Select название as 'Название группы' From Группа Where [id Специальность] is null";
-            }else {
+            } else {
                 label.Text = "Факультеты";
                 Text += " Специальность";
                 query = "Select название as 'Название специальности' From Специальность Where [id Факультет] is null";
@@ -35,8 +35,7 @@ namespace Fill_Table {
                 try {
                     adapter.Fill(table);
                     dataGried(table);
-                }
-                catch (Exception ex) {
+                } catch (Exception ex) {
                     MessageBox.Show("Ошибка отображения данных таблицы.\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 fill_ComboBox(!flag ? "Select название From Специальность" : "Select название From Факультет");
@@ -57,8 +56,7 @@ namespace Fill_Table {
                             }
                         }
                     }
-                }
-                catch (Exception ex) {
+                } catch (Exception ex) {
                     MessageBox.Show("Ошибка отображения данных таблицы.\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -98,9 +96,9 @@ namespace Fill_Table {
                                 AddInfo addInfo = new AddInfo(connectionString, true);
                                 addInfo.ShowDialog();
                                 addInfo.BringToFront();
-                                query = $"Select 1 Where exists (Select 1 From Факультет Where название = '{name2}')";
+                                query = $"Select 1 Where exists (Select 1 From Специальность Where [id Факультет] is null)";
                                 using (SqlCommand command2 = new SqlCommand(query, connection)) {
-                                    if (command2.ExecuteScalar() == null) {
+                                    if (command2.ExecuteScalar() != null) {
                                         MessageBox.Show("Факультет не был добавлен.",
                                             "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         query = $"Delete from Специальность Where название = '{name2}'";
@@ -108,8 +106,7 @@ namespace Fill_Table {
                                         return;
                                     }
                                 }
-                            }
-                            else {
+                            } else {
                                 return;
                             }
                         }
@@ -136,8 +133,7 @@ namespace Fill_Table {
                 try {
                     MessageBox.Show($"Изменено значений {new SqlCommand(query, connection).ExecuteNonQuery()}.", 
                         "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception ex) {
+                } catch (Exception ex) {
                     MessageBox.Show("Ошибка обновления таблицы.\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -145,8 +141,7 @@ namespace Fill_Table {
             if (table == "Группа") {
                 query = "Select название as 'Название группы' From Группа Where [id Специальность] is null";
                 flag = false;
-            }
-            else {
+            } else {
                 query = "Select название as 'Название специальности' From Специальность Where [id Факультет] is null";
                 flag = true;
             }

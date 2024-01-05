@@ -74,8 +74,9 @@ namespace Fill_Table {
                             using (var squery = new SqlCommand($"Select count(*) From Турникет Where id = {genID}", connection)) {
                                 check = int.Parse(squery.ExecuteScalar().ToString());
                             }
-                            if (check > 0)
+                            if (check > 0) {
                                 break;
+                            }
                         }
                         int genS;
                         while (true) {
@@ -88,8 +89,9 @@ namespace Fill_Table {
                             using (var squery = new SqlCommand($"Select count(*) From Студент Where id = {genS}", connection)) {
                                 check = int.Parse(squery.ExecuteScalar().ToString());
                             }
-                            if (check > 0)
+                            if (check > 0) {
                                 break;
+                            }
                         }
                         int chip;
                         using (var squery = new SqlCommand("Select чип " + $"From Студент Where id = {genS}", connection)) {
@@ -125,8 +127,7 @@ namespace Fill_Table {
                     info.Show();
                     info.BringToFront();
                     info.dataGried(table);
-                }
-                catch (Exception ex) {
+                } catch (Exception ex) {
                     MessageBox.Show("Ошибка отображения данных таблицы.\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }

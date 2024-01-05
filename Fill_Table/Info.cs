@@ -5,14 +5,16 @@ using System.Windows.Forms;
 
 namespace Fill_Table {
     public partial class Info : Form {
-        string connectionString;
+        string connectionString = "";
         public Info(string connection) {
             InitializeComponent();
             connectionString = connection;
-            if (comboBoxT.SelectedItem.ToString() == "все")
+            if (comboBoxT.SelectedItem.ToString() == "все") {
                 textBoxT.Visible = false;
-            if (comboBoxS.SelectedItem.ToString() == "все")
+            }
+            if (comboBoxS.SelectedItem.ToString() == "все") {
                 textBoxS.Visible = false;
+            }
         }
 
         public void dataGried(DataTable table) {
@@ -27,21 +29,22 @@ namespace Fill_Table {
             var all = "все";
             try {
                 if (tur != all)
-                    if (int.TryParse(textBoxT.Text, out int number))
+                    if (int.TryParse(textBoxT.Text, out int number)) {
                         tur = number.ToString();
-                    else
-                        if (tur.Length == 0)
-                            throw new Exception("Вы ничего не ввели в поле турникета.");
-                        else
-                            throw new Exception("Должно быть введено число в поле турникета.");
-                if (stud != all)
-                    if (int.TryParse(textBoxS.Text, out int number))
+                    } else if (tur.Length == 0) {
+                        throw new Exception("Вы ничего не ввели в поле турникета.");
+                    } else {
+                        throw new Exception("Должно быть введено число в поле турникета.");
+                    }
+                if (stud != all) {
+                    if (int.TryParse(textBoxS.Text, out int number)) {
                         stud = number.ToString();
-                    else
-                        if (stud.Length == 0)
-                        throw new Exception("Вы ничего не ввели в поле студента.");
-                    else
-                        throw new Exception("Должно быть введено число в поле студента.");
+                    } else if (stud.Length == 0) {
+                            throw new Exception("Вы ничего не ввели в поле студента.");
+                    } else {
+                            throw new Exception("Должно быть введено число в поле студента.");
+                    }
+                }
                 var sql = "Select [Номер турникета] as Турникет, Студент.id, фамилия, имя, отчество, вход, [дата и время] " +
                     "From [Отметка турникета], Турникет, Студент Where [id Турникет] = Турникет.id and [Отметка турникета].чип = Студент.чип";
                 var sqlS = " and Студент.id = ";
@@ -49,43 +52,42 @@ namespace Fill_Table {
                 using (SqlConnection connection = new SqlConnection(connectionString)) {
                     connection.Open();
                     SqlDataAdapter adapter;
-                    if (tur == all && stud == all)
+                    if (tur == all && stud == all) {
                         adapter = new SqlDataAdapter(sql, connection);
-                    else
-                        if (tur == all)
-                            adapter = new SqlDataAdapter(sql + sqlS + int.Parse(stud), connection);
-                    else
-                        if (stud == all)
-                            adapter = new SqlDataAdapter(sql + sqlT + int.Parse(tur), connection);
-                    else
+                    } else if (tur == all) {
+                        adapter = new SqlDataAdapter(sql + sqlS + int.Parse(stud), connection);
+                    } else if (stud == all) {
+                        adapter = new SqlDataAdapter(sql + sqlT + int.Parse(tur), connection);
+                    } else {
                         adapter = new SqlDataAdapter(sql + sqlS + int.Parse(stud) + sqlT + int.Parse(tur), connection);
+                    }
                     var table = new DataTable();
                     try {
                         adapter.Fill(table);
                         dataGried(table);
-                    }
-                    catch (Exception ex) {
+                    } catch (Exception ex) {
                         MessageBox.Show("Ошибка отображения данных таблицы.\n" + ex , "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-            }
-            catch (Exception ex) {
+            } catch (Exception ex) {
                 MessageBox.Show("Введенные данные не соотвествуют формату.\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void comboBoxT_SelectedIndexChanged(object sender, EventArgs e) {
-            if (comboBoxT.SelectedItem.ToString() == "все")
+            if (comboBoxT.SelectedItem.ToString() == "все") {
                 textBoxT.Visible = false;
-            else
+            } else {
                 textBoxT.Visible = true;
+            }
         }
 
         private void comboBoxS_SelectedIndexChanged(object sender, EventArgs e) {
-            if (comboBoxS.SelectedItem.ToString() == "все")
+            if (comboBoxS.SelectedItem.ToString() == "все") {
                 textBoxS.Visible = false;
-            else
+            } else {
                 textBoxS.Visible = true;
+            }
         }
     }
 }

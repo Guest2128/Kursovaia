@@ -33,7 +33,7 @@
             // label
             // 
             this.label.AutoSize = true;
-            this.label.Location = new System.Drawing.Point(106, 28);
+            this.label.Location = new System.Drawing.Point(42, 28);
             this.label.Name = "label";
             this.label.Size = new System.Drawing.Size(57, 13);
             this.label.TabIndex = 0;
@@ -57,14 +57,14 @@
             // comboBox
             // 
             this.comboBox.FormattingEnabled = true;
-            this.comboBox.Location = new System.Drawing.Point(324, 25);
+            this.comboBox.Location = new System.Drawing.Point(250, 25);
             this.comboBox.Name = "comboBox";
-            this.comboBox.Size = new System.Drawing.Size(202, 21);
+            this.comboBox.Size = new System.Drawing.Size(372, 21);
             this.comboBox.TabIndex = 2;
             // 
             // buttonAdd
             // 
-            this.buttonAdd.Location = new System.Drawing.Point(613, 23);
+            this.buttonAdd.Location = new System.Drawing.Point(689, 23);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(75, 23);
             this.buttonAdd.TabIndex = 3;

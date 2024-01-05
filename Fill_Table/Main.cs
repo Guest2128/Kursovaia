@@ -50,8 +50,7 @@ namespace Fill_Table {
                 try {
                     adapter.Fill(table);
                     dataGried(table);
-                }
-                catch (Exception ex) {
+                } catch (Exception ex) {
                     MessageBox.Show("Ошибка отображения данных таблицы.\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -87,8 +86,7 @@ namespace Fill_Table {
             int lastIndex = path.LastIndexOf('\\');
             if (lastIndex != -1) {
                 return path.Substring(0, lastIndex);
-            }
-            else {
+            } else {
                 return path;
             }
         }
@@ -118,14 +116,13 @@ namespace Fill_Table {
                             DialogResult result = MessageBox.Show("Расписание для этой группы уже есть. Вы хотите его заменить?",
                                 "Уведомление", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                             if (result == DialogResult.Yes) {
-                                query = $"Delete from Расписание Where [id Группа] = (Select id From Группа Where название = '{group}') " +
-                                    $"Delete from Группа Where название = '{group}'";
+                                query = $"Delete from Расписание Where [id Группа] = (Select id From Группа Where название = '{group}')";
+                                    //$" Delete from Группа Where название = '{group}'";
                                 using (SqlCommand command2 = new SqlCommand(query, connection)) {
-                                    MessageBox.Show($"Все данные с этой группой были удалены. Удалено записей: {command2.ExecuteNonQuery() - 1}\n",
+                                    MessageBox.Show($"Все данные с этой группой были удалены. Удалено записей: {command2.ExecuteNonQuery()}\n",
                                         "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 }
-                            }
-                            else {
+                            } else {
                                 return;
                             }
                         }
@@ -150,8 +147,7 @@ namespace Fill_Table {
                                     if (temp == "") {
                                         corpus[i] = "";
                                         auditory[i] = "";
-                                    }
-                                    else {
+                                    } else {
                                         corpus[i] = temp.Split(',')[0];
                                         auditory[i] = temp.Split(',')[1];
                                     }
@@ -239,8 +235,7 @@ namespace Fill_Table {
                                 //    MessageBox.Show($"Успешно добавлен пункт расписания, изменено строк: {command2.ExecuteNonQuery()}.\n",
                                 //"Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
-                        }
-                        catch (Exception ex) {
+                        } catch (Exception ex) {
                             MessageBox.Show("Ошибка добавления расписания.\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     } else {
@@ -253,8 +248,7 @@ namespace Fill_Table {
                     using (SqlCommand command2 = new SqlCommand(query, connection)) {
                         return (int?)command2.ExecuteScalar();
                     }
-                }
-                catch (Exception) {
+                } catch (Exception) {
                     return -1;
                 }
             }
@@ -273,8 +267,8 @@ namespace Fill_Table {
                                 //MessageBox.Show($"Успешно добавлена группа '{group}', изменено строк: {command2.ExecuteNonQuery()}.\n",
                                 //    "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
-                        } catch (Exception) {// ex) {
-                            //MessageBox.Show("Ошибка добавления группы.\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        } catch (Exception ex) {
+                            MessageBox.Show("Ошибка добавления группы.\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
@@ -351,8 +345,8 @@ namespace Fill_Table {
                                 //MessageBox.Show($"Успешно добавлена аудитория '{auditory}', изменено строк: {command2.ExecuteNonQuery()}.\n",
                                 //    "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
-                        } catch (Exception) {// ex) {
-                            //MessageBox.Show("Ошибка добавления аудитории.\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        } catch (Exception ex) {
+                            MessageBox.Show("Ошибка добавления аудитории.\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
@@ -383,8 +377,8 @@ namespace Fill_Table {
                                 //MessageBox.Show($"Успешно добавлена дисциплина '{discipline}', изменено строк: {command2.ExecuteNonQuery()}.\n",
                                 //    "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
-                        } catch (Exception) {// ex) {
-                            //MessageBox.Show("Ошибка добавления дисциплины.\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        } catch (Exception ex) {
+                            MessageBox.Show("Ошибка добавления дисциплины.\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
@@ -415,8 +409,8 @@ namespace Fill_Table {
                                 //MessageBox.Show($"Успешно добавлен преподаватель '{teacher}', изменено строк: {command2.ExecuteNonQuery()}.\n",
                                 //    "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
-                        } catch (Exception) {// ex) {
-                            //MessageBox.Show("Ошибка добавления преподавателя.\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        } catch (Exception ex) {
+                            MessageBox.Show("Ошибка добавления преподавателя.\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }

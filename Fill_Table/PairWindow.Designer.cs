@@ -23,7 +23,6 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.groupBoxHeader = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.labelAllR = new System.Windows.Forms.Label();
@@ -31,30 +30,14 @@
             this.labelActive = new System.Windows.Forms.Label();
             this.labelAll = new System.Windows.Forms.Label();
             this.dataGridViewPair = new System.Windows.Forms.DataGridView();
-            this.groupBoxHeader.SuspendLayout();
+            this.button = new System.Windows.Forms.Button();
+            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPair)).BeginInit();
             this.SuspendLayout();
             // 
-            // groupBoxHeader
-            // 
-            this.groupBoxHeader.AutoSize = true;
-            this.groupBoxHeader.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.groupBoxHeader.Controls.Add(this.label2);
-            this.groupBoxHeader.Controls.Add(this.label1);
-            this.groupBoxHeader.Controls.Add(this.labelAllR);
-            this.groupBoxHeader.Controls.Add(this.labelPercent);
-            this.groupBoxHeader.Controls.Add(this.labelActive);
-            this.groupBoxHeader.Controls.Add(this.labelAll);
-            this.groupBoxHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBoxHeader.Location = new System.Drawing.Point(0, 0);
-            this.groupBoxHeader.Name = "groupBoxHeader";
-            this.groupBoxHeader.Size = new System.Drawing.Size(800, 123);
-            this.groupBoxHeader.TabIndex = 0;
-            this.groupBoxHeader.TabStop = false;
-            // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(425, 94);
+            this.label2.Location = new System.Drawing.Point(202, 103);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(100, 13);
             this.label2.TabIndex = 5;
@@ -62,7 +45,7 @@
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(425, 60);
+            this.label1.Location = new System.Drawing.Point(202, 69);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(100, 13);
             this.label1.TabIndex = 4;
@@ -70,7 +53,7 @@
             // 
             // labelAllR
             // 
-            this.labelAllR.Location = new System.Drawing.Point(425, 19);
+            this.labelAllR.Location = new System.Drawing.Point(202, 28);
             this.labelAllR.Name = "labelAllR";
             this.labelAllR.Size = new System.Drawing.Size(100, 13);
             this.labelAllR.TabIndex = 3;
@@ -79,7 +62,7 @@
             // labelPercent
             // 
             this.labelPercent.AutoSize = true;
-            this.labelPercent.Location = new System.Drawing.Point(292, 94);
+            this.labelPercent.Location = new System.Drawing.Point(69, 103);
             this.labelPercent.Name = "labelPercent";
             this.labelPercent.Size = new System.Drawing.Size(51, 13);
             this.labelPercent.TabIndex = 2;
@@ -88,7 +71,7 @@
             // labelActive
             // 
             this.labelActive.AutoSize = true;
-            this.labelActive.Location = new System.Drawing.Point(292, 60);
+            this.labelActive.Location = new System.Drawing.Point(69, 69);
             this.labelActive.Name = "labelActive";
             this.labelActive.Size = new System.Drawing.Size(36, 13);
             this.labelActive.TabIndex = 1;
@@ -97,7 +80,7 @@
             // labelAll
             // 
             this.labelAll.AutoSize = true;
-            this.labelAll.Location = new System.Drawing.Point(292, 19);
+            this.labelAll.Location = new System.Drawing.Point(69, 28);
             this.labelAll.Name = "labelAll";
             this.labelAll.Size = new System.Drawing.Size(39, 13);
             this.labelAll.TabIndex = 0;
@@ -107,25 +90,53 @@
             // 
             this.dataGridViewPair.AllowUserToAddRows = false;
             this.dataGridViewPair.AllowUserToDeleteRows = false;
+            this.dataGridViewPair.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridViewPair.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewPair.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewPair.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewPair.Location = new System.Drawing.Point(0, 123);
+            this.dataGridViewPair.Location = new System.Drawing.Point(0, 137);
             this.dataGridViewPair.Name = "dataGridViewPair";
             this.dataGridViewPair.ReadOnly = true;
-            this.dataGridViewPair.Size = new System.Drawing.Size(800, 327);
+            this.dataGridViewPair.Size = new System.Drawing.Size(800, 313);
             this.dataGridViewPair.TabIndex = 1;
+            // 
+            // button
+            // 
+            this.button.Location = new System.Drawing.Point(661, 65);
+            this.button.Name = "button";
+            this.button.Size = new System.Drawing.Size(75, 23);
+            this.button.TabIndex = 6;
+            this.button.Text = "Отобразить";
+            this.button.UseVisualStyleBackColor = true;
+            this.button.Click += new System.EventHandler(this.button_Click);
+            // 
+            // dateTimePicker
+            // 
+            this.dateTimePicker.CustomFormat = "dd.MM.yyyy";
+            this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker.Location = new System.Drawing.Point(426, 64);
+            this.dateTimePicker.Name = "dateTimePicker";
+            this.dateTimePicker.Size = new System.Drawing.Size(80, 20);
+            this.dateTimePicker.TabIndex = 7;
+            this.dateTimePicker.Value = new System.DateTime(2022, 9, 1, 0, 0, 0, 0);
             // 
             // PairWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.dateTimePicker);
+            this.Controls.Add(this.button);
             this.Controls.Add(this.dataGridViewPair);
-            this.Controls.Add(this.groupBoxHeader);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelAllR);
+            this.Controls.Add(this.labelAll);
+            this.Controls.Add(this.labelPercent);
+            this.Controls.Add(this.labelActive);
             this.Name = "PairWindow";
             this.Text = "Окно отображения информации о группе";
-            this.groupBoxHeader.ResumeLayout(false);
-            this.groupBoxHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPair)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -133,8 +144,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.GroupBox groupBoxHeader;
         private System.Windows.Forms.Label labelAll;
         private System.Windows.Forms.Label labelActive;
         private System.Windows.Forms.Label labelPercent;
@@ -142,5 +151,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelAllR;
         private System.Windows.Forms.DataGridView dataGridViewPair;
+        private System.Windows.Forms.Button button;
+        private System.Windows.Forms.DateTimePicker dateTimePicker;
     }
 }

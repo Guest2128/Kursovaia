@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace Fill_Table {
@@ -39,7 +38,7 @@ namespace Fill_Table {
                 }
                 dataGridViewTable.Columns.Add(day, day);
             }
-            for (var i = 0;i < 5;++i) {
+            for (var i = 0; i < 5; ++i) {
                 dataGridViewTable.Rows.Add();
             }
         }
@@ -56,8 +55,7 @@ namespace Fill_Table {
                             }
                         }
                     }
-                }
-                catch (Exception ex) {
+                } catch (Exception ex) {
                     MessageBox.Show("Ошибка отображения данных таблицы.\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -120,9 +118,12 @@ namespace Fill_Table {
                                     column = 6;
                                     break;
                             }
-                            dataGridViewTable.Rows[(int)row["Номер пары"]].Cells[0].Value = row["Номер пары"];
-                            var info = row["Дисциплина"] + "\n" + row["Номер корпуса"] + "\n" + row["Аудитория"] + "\n" + row["Преподаватель"];
-                            dataGridViewTable.Rows[(int)row["Номер пары"]].Cells[column].Value = info;
+                            string info = row["Дисциплина"] + "\n\n" + row["Преподаватель"];
+                            dataGridViewTable.Rows[(int)row["Номер пары"] - 1].Cells[0].Value = row["Номер пары"];
+                            if (row["Номер корпуса"].ToString() != "") {
+                                info = row["Дисциплина"] + "\n\nк. " + row["Номер корпуса"] + ", ауд. " + row["Аудитория"] + "\n\n" + row["Преподаватель"];
+                            }
+                            dataGridViewTable.Rows[(int)row["Номер пары"] - 1].Cells[column].Value = info;
                         }
                         dataGridViewTable.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells); 
                     }
@@ -133,16 +134,15 @@ namespace Fill_Table {
             }
         }
 
+        PairWindow pairWindow;
+
         private void dataGridViewTable_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e) {
-
+            if (pairWindow == null || pairWindow.IsDisposed) {
+                pairWindow = new PairWindow(connectionString, dataGridViewTable.CurrentCell.RowIndex, 
+                    dataGridViewTable.CurrentCell.ColumnIndex, comboBoxGroup.ToString());
+            }
+            pairWindow.Show();
+            pairWindow.BringToFront();
         }
-
-        //string selected;
-
-        //private void dataGridView_SelectionChanged(object sender, EventArgs e) {
-        //    selected = dataGridViewTable.SelectedCells[0].ToString();
-        //    //Text = selected;
-        //    new PairWindow(connectionString, selected);
-        //}
     }
 }
