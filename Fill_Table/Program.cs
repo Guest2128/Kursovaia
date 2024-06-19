@@ -12,7 +12,9 @@ namespace Fill_Table {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-            Application.Run(new Main());
+            // Запуск окна авторизации
+            Application.Run(new Authorization());
+
         }
     }
 }

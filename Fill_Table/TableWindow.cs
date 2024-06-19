@@ -1,19 +1,26 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Fill_Table {
     public partial class TableWindow : Form {
-        static string connectionString;
-        public TableWindow(string connection) {
+        public static string connectionString;
+        PairWindow pairWindow;
+        string dis;
+        string prep;
+        string aud;
+        string aud2;
+        public TableWindow() {
             InitializeComponent();
-            connectionString = connection;
             fill_ComboBox(comboBoxFaculty, "Select название From Факультет");
-            updateGroup();
             comboBoxFaculty.SelectedIndex = 0;
+            fill_ComboBox(comboBoxGroup, "Select Группа.название From Группа, Специальность " +
+                $"Where [id Специальность] = Специальность.id and [id Факультет] = " +
+                $"(Select id From Факультет Where название = '{comboBoxFaculty.Text}')");
             comboBoxGroup.SelectedIndex = 0;
-            dataGridViewTable.Columns.Add("Пара", "Номер пары");
+            dataGridViewTable.Columns.Add("Номер пары", "Номер пары");
             for (var i = 0; i < 6; ++i) {
                 string day = "";
                 switch (i) {
@@ -41,6 +48,19 @@ namespace Fill_Table {
             for (var i = 0; i < 5; ++i) {
                 dataGridViewTable.Rows.Add();
             }
+            for (var i = 0; i < dataGridViewTable.Rows.Count;++i) {
+                PaintCell(i, 0, Color.LightGray, Color.Red);
+                dataGridViewTable.Rows[i].Cells[0].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+            PairWindow.connectionString = connectionString;
+        }
+
+        private void PaintCell(int rowIndex, int columnIndex, Color backColor, Color foreColor) {
+            if (rowIndex >= 0 && rowIndex < dataGridViewTable.Rows.Count &&
+                columnIndex >= 0 && columnIndex < dataGridViewTable.Columns.Count) {
+                dataGridViewTable.Rows[rowIndex].Cells[columnIndex].Style.BackColor = backColor;
+                dataGridViewTable.Rows[rowIndex].Cells[columnIndex].Style.ForeColor = foreColor;
+            }
         }
 
         private void fill_ComboBox(ComboBox comboBox, string query) {
@@ -61,17 +81,12 @@ namespace Fill_Table {
             }
         }
 
-        private void updateGroup() {
-            fill_ComboBox(comboBoxGroup, "Select Группа.название From Группа, Специальность " +
-                $"Where[id Специальность] = Специальность.id and[id Факультет] = (Select id From Факультет Where название = '{comboBoxFaculty.Text}')");
-        }
-
         private void comboBoxFaculty_SelectedIndexChanged(object sender, EventArgs e) {
-            comboBoxFaculty.SelectedItem = comboBoxFaculty.Text;
-            updateGroup();
-            comboBoxGroup.SelectedItem = comboBoxGroup.Items[0];
+            fill_ComboBox(comboBoxGroup, "Select Группа.название From Группа, Специальность " +
+                $"Where [id Специальность] = Специальность.id and [id Факультет] = (Select id From Факультет Where название = '{comboBoxFaculty.Text}')");
+            comboBoxGroup.SelectedIndex = 0;
         }
-
+        
         private void buttonF_Click(object sender, EventArgs e) {
             var query = "SELECT День.название AS 'День недели', [номер пары] AS 'Номер пары', Корпус.номер AS 'Номер корпуса', Аудитория.название AS 'Аудитория', " +
                 "Дисциплина.название AS 'Дисциплина', Преподаватель.ФИО AS 'Преподаватель' FROM Расписание " +
@@ -84,11 +99,10 @@ namespace Fill_Table {
                 "INNER JOIN Группа ON Расписание.[id Группа] = Группа.id " +
                 "INNER JOIN Специальность ON Группа.[id Специальность] = Специальность.id " +
                 "INNER JOIN Факультет ON Специальность.[id Факультет] = Факультет.id " +
-                $"WHERE [id Группа] = (SELECT id From Группа Where название = '{comboBoxGroup.Text}') and " +
+                $"WHERE [id Группа] in (SELECT id From Группа Where название = '{comboBoxGroup.Text}') and " +
                 $"[id Факультет] = (SELECT id From Факультет Where название = '{comboBoxFaculty.Text}') " +
                 "ORDER BY Пара.id, День.id";
             try {
-                var connectionString = "Server=localhost;Database=Турникет;Trusted_Connection=True;";
                 using (SqlConnection connection = new SqlConnection(connectionString)) {
                     connection.Open();
                     using (SqlCommand command = new SqlCommand(query, connection)) {
@@ -118,11 +132,26 @@ namespace Fill_Table {
                                     column = 6;
                                     break;
                             }
-                            string info = row["Дисциплина"] + "\n\n" + row["Преподаватель"];
-                            dataGridViewTable.Rows[(int)row["Номер пары"] - 1].Cells[0].Value = row["Номер пары"];
-                            if (row["Номер корпуса"].ToString() != "") {
-                                info = row["Дисциплина"] + "\n\nк. " + row["Номер корпуса"] + ", ауд. " + row["Аудитория"] + "\n\n" + row["Преподаватель"];
+                            var dis = row["Дисциплина"].ToString();
+                            var prep = row["Преподаватель"].ToString();
+                              if (prep == "") {
+                                prep = " ";
                             }
+                            var audl = row["Аудитория"].ToString();
+                            aud2 = " ";
+                            var korpl = row["Номер корпуса"].ToString();
+                            var aud = "к. " + korpl + ", ауд. " + audl;
+                            dataGridViewTable.Rows[(int)row["Номер пары"] - 1].Cells[0].Value = row["Номер пары"];
+                            if (korpl == "" || korpl == " ") {
+                                aud = audl;
+                                if (audl == ""  ||audl == " ") {
+                                    aud = " ";
+                                }
+                            } else {
+                                aud = "к. " + korpl + ", ауд. " + audl;
+                                aud2 = audl;
+                            }
+                            var info = dis + "\n\n" + aud + "\n\n" + prep;
                             dataGridViewTable.Rows[(int)row["Номер пары"] - 1].Cells[column].Value = info;
                         }
                         dataGridViewTable.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells); 
@@ -134,15 +163,25 @@ namespace Fill_Table {
             }
         }
 
-        PairWindow pairWindow;
-
-        private void dataGridViewTable_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e) {
+        private void dataGridViewTable_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e) {
             if (pairWindow == null || pairWindow.IsDisposed) {
-                pairWindow = new PairWindow(connectionString, dataGridViewTable.CurrentCell.RowIndex, 
-                    dataGridViewTable.CurrentCell.ColumnIndex, comboBoxGroup.ToString());
+                pairWindow = new PairWindow(dataGridViewTable.CurrentCell.RowIndex + 1,
+                    /*dataGridViewTable.CurrentCell.ColumnIndex, */ comboBoxGroup.Text, monthCalendar1.SelectionStart, dis, prep, aud, aud2);
             }
             pairWindow.Show();
             pairWindow.BringToFront();
+        }
+
+        private void dataGridViewTable_CurrentCellChanged(object sender, EventArgs e) {
+            object cellValue = dataGridViewTable.CurrentCell.Value;
+            string cellContent = "";
+            if (cellValue != null) {
+                cellContent = cellValue.ToString();
+            }
+            dis = cellContent.Split('\n').Length == 0 ? "" : cellContent.Split('\n')[0];
+            aud = cellContent.Split('\n').Length <= 2 ? "" : cellContent.Split('\n')[2];
+            aud2 = (aud != "" && aud != " ") ? aud.Substring(aud.IndexOf("ауд.") + 5) : "";
+            prep = cellContent.Split('\n').Length <= 4 ? "" : cellContent.Split('\n')[4];
         }
     }
 }

@@ -23,68 +23,68 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.labelAllR = new System.Windows.Forms.Label();
-            this.labelPercent = new System.Windows.Forms.Label();
-            this.labelActive = new System.Windows.Forms.Label();
-            this.labelAll = new System.Windows.Forms.Label();
+            this.labelPaR = new System.Windows.Forms.Label();
+            this.labelPR = new System.Windows.Forms.Label();
+            this.labelDR = new System.Windows.Forms.Label();
+            this.labelPa = new System.Windows.Forms.Label();
+            this.labelP = new System.Windows.Forms.Label();
+            this.labelD = new System.Windows.Forms.Label();
             this.dataGridViewPair = new System.Windows.Forms.DataGridView();
-            this.button = new System.Windows.Forms.Button();
-            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.labelA = new System.Windows.Forms.Label();
+            this.labelAR = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPair)).BeginInit();
             this.SuspendLayout();
             // 
-            // label2
+            // labelPaR
             // 
-            this.label2.Location = new System.Drawing.Point(202, 103);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(100, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "процент";
+            this.labelPaR.Location = new System.Drawing.Point(192, 88);
+            this.labelPaR.Name = "labelPaR";
+            this.labelPaR.Size = new System.Drawing.Size(373, 13);
+            this.labelPaR.TabIndex = 5;
+            this.labelPaR.Text = "время пары";
             // 
-            // label1
+            // labelPR
             // 
-            this.label1.Location = new System.Drawing.Point(202, 69);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "студенты на паре";
+            this.labelPR.Location = new System.Drawing.Point(192, 54);
+            this.labelPR.Name = "labelPR";
+            this.labelPR.Size = new System.Drawing.Size(373, 13);
+            this.labelPR.TabIndex = 4;
+            this.labelPR.Text = "преподаватель";
             // 
-            // labelAllR
+            // labelDR
             // 
-            this.labelAllR.Location = new System.Drawing.Point(202, 28);
-            this.labelAllR.Name = "labelAllR";
-            this.labelAllR.Size = new System.Drawing.Size(100, 13);
-            this.labelAllR.TabIndex = 3;
-            this.labelAllR.Text = "студенты в группе";
+            this.labelDR.Location = new System.Drawing.Point(192, 13);
+            this.labelDR.Name = "labelDR";
+            this.labelDR.Size = new System.Drawing.Size(373, 13);
+            this.labelDR.TabIndex = 3;
+            this.labelDR.Text = "дисциплина";
             // 
-            // labelPercent
+            // labelPa
             // 
-            this.labelPercent.AutoSize = true;
-            this.labelPercent.Location = new System.Drawing.Point(69, 103);
-            this.labelPercent.Name = "labelPercent";
-            this.labelPercent.Size = new System.Drawing.Size(51, 13);
-            this.labelPercent.TabIndex = 2;
-            this.labelPercent.Text = "процент:";
+            this.labelPa.AutoSize = true;
+            this.labelPa.Location = new System.Drawing.Point(59, 88);
+            this.labelPa.Name = "labelPa";
+            this.labelPa.Size = new System.Drawing.Size(72, 13);
+            this.labelPa.TabIndex = 2;
+            this.labelPa.Text = "Время пары:";
             // 
-            // labelActive
+            // labelP
             // 
-            this.labelActive.AutoSize = true;
-            this.labelActive.Location = new System.Drawing.Point(69, 69);
-            this.labelActive.Name = "labelActive";
-            this.labelActive.Size = new System.Drawing.Size(36, 13);
-            this.labelActive.TabIndex = 1;
-            this.labelActive.Text = "было:";
+            this.labelP.AutoSize = true;
+            this.labelP.Location = new System.Drawing.Point(59, 54);
+            this.labelP.Name = "labelP";
+            this.labelP.Size = new System.Drawing.Size(89, 13);
+            this.labelP.TabIndex = 1;
+            this.labelP.Text = "Преподаватель:";
             // 
-            // labelAll
+            // labelD
             // 
-            this.labelAll.AutoSize = true;
-            this.labelAll.Location = new System.Drawing.Point(69, 28);
-            this.labelAll.Name = "labelAll";
-            this.labelAll.Size = new System.Drawing.Size(39, 13);
-            this.labelAll.TabIndex = 0;
-            this.labelAll.Text = "всего:";
+            this.labelD.AutoSize = true;
+            this.labelD.Location = new System.Drawing.Point(59, 13);
+            this.labelD.Name = "labelD";
+            this.labelD.Size = new System.Drawing.Size(73, 13);
+            this.labelD.TabIndex = 0;
+            this.labelD.Text = "Дисциплина:";
             // 
             // dataGridViewPair
             // 
@@ -95,46 +95,44 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewPair.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewPair.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewPair.Location = new System.Drawing.Point(0, 137);
+            this.dataGridViewPair.Location = new System.Drawing.Point(0, 166);
             this.dataGridViewPair.Name = "dataGridViewPair";
             this.dataGridViewPair.ReadOnly = true;
-            this.dataGridViewPair.Size = new System.Drawing.Size(800, 313);
+            this.dataGridViewPair.Size = new System.Drawing.Size(800, 284);
             this.dataGridViewPair.TabIndex = 1;
             // 
-            // button
+            // labelA
             // 
-            this.button.Location = new System.Drawing.Point(661, 65);
-            this.button.Name = "button";
-            this.button.Size = new System.Drawing.Size(75, 23);
-            this.button.TabIndex = 6;
-            this.button.Text = "Отобразить";
-            this.button.UseVisualStyleBackColor = true;
-            this.button.Click += new System.EventHandler(this.button_Click);
+            this.labelA.AutoSize = true;
+            this.labelA.Location = new System.Drawing.Point(62, 125);
+            this.labelA.Name = "labelA";
+            this.labelA.Size = new System.Drawing.Size(60, 13);
+            this.labelA.TabIndex = 6;
+            this.labelA.Text = "Аудитория";
             // 
-            // dateTimePicker
+            // labelAR
             // 
-            this.dateTimePicker.CustomFormat = "dd.MM.yyyy";
-            this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker.Location = new System.Drawing.Point(426, 64);
-            this.dateTimePicker.Name = "dateTimePicker";
-            this.dateTimePicker.Size = new System.Drawing.Size(80, 20);
-            this.dateTimePicker.TabIndex = 7;
-            this.dateTimePicker.Value = new System.DateTime(2022, 9, 1, 0, 0, 0, 0);
+            this.labelAR.AutoSize = true;
+            this.labelAR.Location = new System.Drawing.Point(195, 124);
+            this.labelAR.Name = "labelAR";
+            this.labelAR.Size = new System.Drawing.Size(59, 13);
+            this.labelAR.TabIndex = 7;
+            this.labelAR.Text = "аудитория";
             // 
             // PairWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.dateTimePicker);
-            this.Controls.Add(this.button);
+            this.Controls.Add(this.labelAR);
+            this.Controls.Add(this.labelA);
             this.Controls.Add(this.dataGridViewPair);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.labelAllR);
-            this.Controls.Add(this.labelAll);
-            this.Controls.Add(this.labelPercent);
-            this.Controls.Add(this.labelActive);
+            this.Controls.Add(this.labelPaR);
+            this.Controls.Add(this.labelPR);
+            this.Controls.Add(this.labelDR);
+            this.Controls.Add(this.labelD);
+            this.Controls.Add(this.labelPa);
+            this.Controls.Add(this.labelP);
             this.Name = "PairWindow";
             this.Text = "Окно отображения информации о группе";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPair)).EndInit();
@@ -144,14 +142,14 @@
         }
 
         #endregion
-        private System.Windows.Forms.Label labelAll;
-        private System.Windows.Forms.Label labelActive;
-        private System.Windows.Forms.Label labelPercent;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label labelAllR;
+        private System.Windows.Forms.Label labelD;
+        private System.Windows.Forms.Label labelP;
+        private System.Windows.Forms.Label labelPa;
+        private System.Windows.Forms.Label labelPaR;
+        private System.Windows.Forms.Label labelPR;
+        private System.Windows.Forms.Label labelDR;
         private System.Windows.Forms.DataGridView dataGridViewPair;
-        private System.Windows.Forms.Button button;
-        private System.Windows.Forms.DateTimePicker dateTimePicker;
+        private System.Windows.Forms.Label labelA;
+        private System.Windows.Forms.Label labelAR;
     }
 }

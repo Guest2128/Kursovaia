@@ -5,15 +5,14 @@ using System.Windows.Forms;
 
 namespace Fill_Table {
     public partial class AddInfo : Form {
-        static string connectionString;
+        public static string connectionString;
         public void dataGried(DataTable table) {
             dataGridViewAdd.AutoGenerateColumns = true;
             dataGridViewAdd.DataSource = table;
             dataGridViewAdd.Visible = true;
         }
-        public AddInfo(string connection, bool flag) {
+        public AddInfo(bool flag) {
             InitializeComponent();
-            connectionString = connection;
             string query;
             if (!flag) {
                 label.Text = "Специальности";
@@ -45,7 +44,6 @@ namespace Fill_Table {
 
         private void fill_ComboBox(string query) {
             comboBox.Items.Clear();
-            var connectionString = "Server=localhost;Database=Турникет;Trusted_Connection=True;";
             using (SqlConnection connection = new SqlConnection(connectionString)) {
                 connection.Open();
                 try {
@@ -93,7 +91,7 @@ namespace Fill_Table {
                                     MessageBox.Show($"Ошибка добавления специальности.",
                                         "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
-                                AddInfo addInfo = new AddInfo(connectionString, true);
+                                AddInfo addInfo = new AddInfo(true);
                                 addInfo.ShowDialog();
                                 addInfo.BringToFront();
                                 query = $"Select 1 Where exists (Select 1 From Специальность Where [id Факультет] is null)";

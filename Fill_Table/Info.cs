@@ -5,10 +5,9 @@ using System.Windows.Forms;
 
 namespace Fill_Table {
     public partial class Info : Form {
-        string connectionString = "";
-        public Info(string connection) {
+        public static string connectionString;
+        public Info() {
             InitializeComponent();
-            connectionString = connection;
             if (comboBoxT.SelectedItem.ToString() == "все") {
                 textBoxT.Visible = false;
             }

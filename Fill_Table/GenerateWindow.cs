@@ -5,10 +5,12 @@ using System.Windows.Forms;
 
 namespace Fill_Table {
     public partial class GenerateWindow : Form {
-        static string connectionString;
-        public GenerateWindow(string connection) {
+        public static string connectionString;
+        Info info;
+        public GenerateWindow() {
             InitializeComponent();
-            connectionString = connection;
+            Info.connectionString = connectionString;
+            info = new Info();
         }
 
         private void buttonGKol_Click(object sender, EventArgs e) {
@@ -40,9 +42,9 @@ namespace Fill_Table {
             int checkKol() {
                 var value = 0;
                 try {
-                    if (textBoxKol.Text.Length == 0)
+                    if (textBox.Text.Length == 0)
                         throw new Exception("Не введено количество входов.");
-                    value = int.Parse(textBoxKol.Text);
+                    value = int.Parse(textBox.Text);
                 }
                 catch (Exception ex) {
                     MessageBox.Show("Введенные данные не соотвествуют формату числа в поле количества входов.\n" + ex, "Ошибка", 
@@ -56,11 +58,7 @@ namespace Fill_Table {
                 using (SqlConnection connection = new SqlConnection(connectionString)) {
                     connection.Open();
                     SqlCommand sChipGen = new SqlCommand(
-                        "Declare Курсор_Студент Cursor For Select id From Студент Open Курсор_Студент Declare @id int, @чип bigint " +
-                        "Fetch Курсор_Студент Into @id While @@FETCH_STATUS = 0 Begin Set @чип = CAST(RAND() * 999999999 AS INT) " +
-                        "Update[Отметка турникета] Set чип = @чип Where чип = (Select чип From Студент Where id = @id) " +
-                        "Update Студент Set чип = @чип Where id = @id " +
-                        "Fetch Курсор_Студент Into @id End Close Курсор_Студент Deallocate Курсор_Студент", connection);
+                        "Exec generate_codes", connection);
                     sChipGen.ExecuteNonQuery();
                     for (var i = 0; i < kol; ++i) {
                         int genID;
@@ -111,18 +109,16 @@ namespace Fill_Table {
             }
         }
 
-        Info info = new Info(connectionString);
-
         private void buttonShow_Click(object sender, EventArgs e) {
             using (SqlConnection connection = new SqlConnection(connectionString)) {
                 connection.Open();
-                var adapter = new SqlDataAdapter("Select [Номер турникета] as Турникет, Студент.id, фамилия, имя, отчество, вход, [дата и время] " +
+                var adapter = new SqlDataAdapter("Select Номер as Турникет, Студент.id, фамилия, имя, отчество, вход, [дата и время] " +
                     "From [Отметка турникета], Турникет, Студент Where [id Турникет] = Турникет.id and [Отметка турникета].чип = Студент.чип", connection);
                 DataTable table = new DataTable();
                 try {     
                     adapter.Fill(table);
                     if (info == null || info.IsDisposed) {
-                        info = new Info(connectionString);
+                        info = new Info();
                     }
                     info.Show();
                     info.BringToFront();
@@ -133,6 +129,7 @@ namespace Fill_Table {
             }
         }
 
+        // Удаление входов из базы данных
         private void buttonClear_Click(object sender, EventArgs e) {
             using (SqlConnection connection = new SqlConnection(connectionString)) {
                 connection.Open();

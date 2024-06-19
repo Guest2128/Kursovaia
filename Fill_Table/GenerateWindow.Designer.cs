@@ -30,8 +30,8 @@
             this.labelDSL = new System.Windows.Forms.Label();
             this.labelDSF = new System.Windows.Forms.Label();
             this.labelKol = new System.Windows.Forms.Label();
-            this.textBoxKol = new System.Windows.Forms.TextBox();
-            this.buttonGKol = new System.Windows.Forms.Button();
+            this.textBox = new System.Windows.Forms.TextBox();
+            this.buttonGenerate = new System.Windows.Forms.Button();
             this.buttonShow = new System.Windows.Forms.Button();
             this.buttonClear = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -101,22 +101,22 @@
             this.labelKol.TabIndex = 6;
             this.labelKol.Text = "Количество входов:";
             // 
-            // textBoxKol
+            // textBox
             // 
-            this.textBoxKol.Location = new System.Drawing.Point(155, 107);
-            this.textBoxKol.Name = "textBoxKol";
-            this.textBoxKol.Size = new System.Drawing.Size(82, 20);
-            this.textBoxKol.TabIndex = 7;
+            this.textBox.Location = new System.Drawing.Point(155, 107);
+            this.textBox.Name = "textBox";
+            this.textBox.Size = new System.Drawing.Size(82, 20);
+            this.textBox.TabIndex = 7;
             // 
-            // buttonGKol
+            // buttonGenerate
             // 
-            this.buttonGKol.Location = new System.Drawing.Point(83, 142);
-            this.buttonGKol.Name = "buttonGKol";
-            this.buttonGKol.Size = new System.Drawing.Size(93, 23);
-            this.buttonGKol.TabIndex = 8;
-            this.buttonGKol.Text = "Сгенерировать";
-            this.buttonGKol.UseVisualStyleBackColor = true;
-            this.buttonGKol.Click += new System.EventHandler(this.buttonGKol_Click);
+            this.buttonGenerate.Location = new System.Drawing.Point(83, 142);
+            this.buttonGenerate.Name = "buttonGenerate";
+            this.buttonGenerate.Size = new System.Drawing.Size(93, 23);
+            this.buttonGenerate.TabIndex = 8;
+            this.buttonGenerate.Text = "Сгенерировать";
+            this.buttonGenerate.UseVisualStyleBackColor = true;
+            this.buttonGenerate.Click += new System.EventHandler(this.buttonGKol_Click);
             // 
             // buttonShow
             // 
@@ -138,16 +138,17 @@
             this.buttonClear.UseVisualStyleBackColor = true;
             this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
             // 
-            // generateWindow
+            // GenerateWindow
             // 
-            this.AcceptButton = this.buttonGKol;
+            this.AcceptButton = this.buttonGenerate;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(266, 258);
             this.Controls.Add(this.buttonClear);
             this.Controls.Add(this.buttonShow);
-            this.Controls.Add(this.buttonGKol);
-            this.Controls.Add(this.textBoxKol);
+            this.Controls.Add(this.buttonGenerate);
+            this.Controls.Add(this.textBox);
             this.Controls.Add(this.labelKol);
             this.Controls.Add(this.labelDSF);
             this.Controls.Add(this.labelDSL);
@@ -155,7 +156,7 @@
             this.Controls.Add(this.dateTimePickerS);
             this.Controls.Add(this.labelDF);
             this.Controls.Add(this.labelDS);
-            this.Name = "generateWindow";
+            this.Name = "GenerateWindow";
             this.Text = "Окно генерации";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -171,8 +172,8 @@
         private System.Windows.Forms.Label labelDSL;
         private System.Windows.Forms.Label labelDSF;
         private System.Windows.Forms.Label labelKol;
-        private System.Windows.Forms.TextBox textBoxKol;
-        private System.Windows.Forms.Button buttonGKol;
+        private System.Windows.Forms.TextBox textBox;
+        private System.Windows.Forms.Button buttonGenerate;
         private System.Windows.Forms.Button buttonShow;
         private System.Windows.Forms.Button buttonClear;
     }

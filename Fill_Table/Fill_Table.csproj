@@ -91,6 +91,12 @@
     <Compile Include="GenerateWindow.Designer.cs">
       <DependentUpon>GenerateWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Otchet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Otchet.Designer.cs">
+      <DependentUpon>Otchet.cs</DependentUpon>
+    </Compile>
     <Compile Include="PairWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,11 +105,60 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShowChangeF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShowChangeF.Designer.cs">
+      <DependentUpon>ShowChangeF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShowChangeG.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShowChangeG.Designer.cs">
+      <DependentUpon>ShowChangeG.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShowChangeK.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShowChangeK.Designer.cs">
+      <DependentUpon>ShowChangeK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShowChangeSp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShowChangeSp.Designer.cs">
+      <DependentUpon>ShowChangeSp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShowChangeSt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShowChangeSt.Designer.cs">
+      <DependentUpon>ShowChangeSt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShowChangeT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShowChangeT.Designer.cs">
+      <DependentUpon>ShowChangeT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Singleton.cs" />
     <Compile Include="TableWindow.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="TableWindow.Designer.cs">
       <DependentUpon>TableWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Authorization.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Authorization.Designer.cs">
+      <DependentUpon>Authorization.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users_reg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users_reg.Designer.cs">
+      <DependentUpon>Users_reg.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AddInfo.resx">
       <DependentUpon>AddInfo.cs</DependentUpon>
@@ -113,6 +168,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Otchet.resx">
+      <DependentUpon>Otchet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PairWindow.resx">
       <DependentUpon>PairWindow.cs</DependentUpon>
@@ -129,8 +187,32 @@
     <EmbeddedResource Include="GenerateWindow.resx">
       <DependentUpon>GenerateWindow.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ShowChangeF.resx">
+      <DependentUpon>ShowChangeF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShowChangeG.resx">
+      <DependentUpon>ShowChangeG.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShowChangeK.resx">
+      <DependentUpon>ShowChangeK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShowChangeSp.resx">
+      <DependentUpon>ShowChangeSp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShowChangeSt.resx">
+      <DependentUpon>ShowChangeSt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShowChangeT.resx">
+      <DependentUpon>ShowChangeT.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TableWindow.resx">
       <DependentUpon>TableWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Authorization.resx">
+      <DependentUpon>Authorization.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users_reg.resx">
+      <DependentUpon>Users_reg.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

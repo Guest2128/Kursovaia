@@ -30,6 +30,7 @@
             this.comboBoxFaculty = new System.Windows.Forms.ComboBox();
             this.comboBoxGroup = new System.Windows.Forms.ComboBox();
             this.buttonF = new System.Windows.Forms.Button();
+            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTable)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,12 +53,14 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewTable.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridViewTable.Location = new System.Drawing.Point(0, 124);
+            this.dataGridViewTable.Location = new System.Drawing.Point(259, 124);
             this.dataGridViewTable.Name = "dataGridViewTable";
             this.dataGridViewTable.ReadOnly = true;
-            this.dataGridViewTable.Size = new System.Drawing.Size(800, 326);
+            this.dataGridViewTable.RowHeadersVisible = false;
+            this.dataGridViewTable.Size = new System.Drawing.Size(461, 314);
             this.dataGridViewTable.TabIndex = 0;
-            this.dataGridViewTable.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewTable_CellMouseDoubleClick);
+            this.dataGridViewTable.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTable_CellContentDoubleClick);
+            this.dataGridViewTable.CurrentCellChanged += new System.EventHandler(this.dataGridViewTable_CurrentCellChanged);
             // 
             // labelFaculty
             // 
@@ -104,11 +107,18 @@
             this.buttonF.UseVisualStyleBackColor = true;
             this.buttonF.Click += new System.EventHandler(this.buttonF_Click);
             // 
+            // monthCalendar1
+            // 
+            this.monthCalendar1.Location = new System.Drawing.Point(44, 124);
+            this.monthCalendar1.Name = "monthCalendar1";
+            this.monthCalendar1.TabIndex = 5;
+            // 
             // TableWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.monthCalendar1);
             this.Controls.Add(this.buttonF);
             this.Controls.Add(this.comboBoxGroup);
             this.Controls.Add(this.dataGridViewTable);
@@ -116,7 +126,7 @@
             this.Controls.Add(this.labelGroup);
             this.Controls.Add(this.labelFaculty);
             this.Name = "TableWindow";
-            this.Text = "Окно выбора факультета и группы";
+            this.Text = "Окно расписания";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTable)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -131,5 +141,6 @@
         private System.Windows.Forms.ComboBox comboBoxFaculty;
         private System.Windows.Forms.ComboBox comboBoxGroup;
         private System.Windows.Forms.Button buttonF;
+        private System.Windows.Forms.MonthCalendar monthCalendar1;
     }
 }
